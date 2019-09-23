@@ -8,10 +8,10 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-<h3> hello dive into code</h3>
-<h3> i have finish the fifth step  of everyleaf</h3>
+  <% flash.each do |key, value| %>
+<p> <%= value %> </p>
+    <% end %>
     <%= yield %>
   </body>
 </html>
