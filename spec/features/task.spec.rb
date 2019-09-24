@@ -39,8 +39,6 @@ visit tasks_path
   end
   scenario "Test task details" do
     
-    
-    
     Task.create!(name: 'greeting', details: 'hello')
     visit tasks_path
     click_link 'Show'

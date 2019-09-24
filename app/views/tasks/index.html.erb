@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<h1>Tasks</h1>
+<h1><%= t('view.tasks') %></h1>
     <% @tasks.each do |task| %>
       <p>   Name:  <%= task.name %> 
   Details:<%= task.details %>
@@ -13,3 +13,5 @@
 <br>
 
 <%= link_to 'New Task', new_task_path %>
+<br>
+
