@@ -1,8 +1,9 @@
 <p id="notice"><%= notice %></p>
 <h1><%= t('view.tasks') %></h1>
     <% @tasks.each do |task| %>
-      <p>   Name:  <%= task.name %> 
-  Details:<%= task.details %>
+      <p>   Name:  <%= task.name %> <br>
+  Details:<%= task.details %> <br>
+  Tokyo time: <%= task.created_at %> <br>
      <%= link_to 'Show', task %>
       <%= link_to 'Update', edit_task_path(task) %>
        <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %></p>
