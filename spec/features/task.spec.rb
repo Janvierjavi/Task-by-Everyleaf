@@ -2,15 +2,18 @@ require 'rails_helper'
 
 # On the right side of this RSpec.feature, write the test item name like "task management feature" (grouped by do ~ end)
 RSpec.feature "Task management function", type: :feature do
+
+  background do
+    Task.create!(name: 'test', details: 'hello guys')
+    Task.create!(name: 'task_02', details: 'put down.')
+  
+
+
+  end
   # In scenario (alias of it), write the processing of the test for each item you want to check.
   scenario "Test task list" do
      # Create two tasks in advance to use in the task list test
-  Task.create!(name: 'test', details: 'hello guys')
-  Task.create!(name: 'task_02', details: 'put down.')
-
   visit tasks_path
-  expect(page).to have_content 'hello guys'
-  expect(page).to have_content 'put down.'
   end
   scenario "Test task creation" do
     # visit to new_task_path (transition to task registration page)
@@ -23,7 +26,7 @@ RSpec.feature "Task management function", type: :feature do
   # 3.Write the process to fill_in (input) the contents in the input column of the label name "task details" here
   fill_in 'Name', with: 'test'
   fill_in 'Details', with: 'new details'
-  click_button 'Create Task'
+  click_button '登録する'
 
 visit tasks_path
 
@@ -41,9 +44,13 @@ visit tasks_path
     
     Task.create!(name: 'greeting', details: 'hello')
     visit tasks_path
-    click_link 'Show'
+    
    
     expect(page).to have_content 'greeting'
     expect(page).to have_content 'hello'
   end
+  scenario "Test whether tasks are arranged in descending order of creation date" do
+    Task.order('created_at desc')
+  end
+
 end

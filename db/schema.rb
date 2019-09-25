@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2019_09_23_071129) do
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.text "details"
+    t.datetime "arrive"
+    t.datetime "leave"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
