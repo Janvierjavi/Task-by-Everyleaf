@@ -6,9 +6,7 @@ RSpec.feature "Task management function", type: :feature do
   background do
     Task.create!(name: 'test', details: 'hello guys')
     Task.create!(name: 'task_02', details: 'put down.')
-  
-
-
+ 
   end
   # In scenario (alias of it), write the processing of the test for each item you want to check.
   scenario "Test task list" do
