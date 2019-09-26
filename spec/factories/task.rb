@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 FactoryBot.define do
 
 <<<<<<< HEAD
@@ -25,4 +26,20 @@ FactoryBot.define do
       details  'Default content 2 created by Factory' 
 >>>>>>> name1
     end
+=======
+FactoryBot.define do
+
+
+    factory :task do
+      name  'test' 
+      details  'hello guys' 
+    end
+  
+    
+    factory :second_task, class: Task do
+      name 'Default title 2 created by Factory' 
+      details  'Default content 2 created by Factory' 
+
+    end
+>>>>>>> 5185eb84c6b958124ffe25277db9e98c71e5a053
   end
