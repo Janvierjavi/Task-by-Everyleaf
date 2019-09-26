@@ -48,7 +48,8 @@ visit tasks_path
     expect(page).to have_content 'hello'
   end
   scenario "Test whether tasks are arranged in descending order of creation date" do
-    Task.order('created_at desc')
+    Task.all.order('arrive desc')
+    Task.order('arrive desc').to_a.should ==   Task.all.order('arrive desc')
   end
 
 end

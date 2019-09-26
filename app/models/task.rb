@@ -1,9 +1,9 @@
 class Task < ApplicationRecord
     validates :name, presence: true
     validates :details, presence: true,  length:{ maximum:150 }
-<<<<<<< HEAD
+
     default_scope { order(arrive: :desc)}
-=======
+
 
     # validate :arri
 
@@ -13,5 +13,5 @@ class Task < ApplicationRecord
     #   end
     # end
 
->>>>>>> name1
+
 end
