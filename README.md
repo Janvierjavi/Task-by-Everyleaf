@@ -36,4 +36,9 @@ column_name| data_type
   * run: git commit -m "messaeg"
   * run: git push heroku master 
   * go to ur heroku account see the name u get the time u creates it. 
-  * click on open and u start use ur app 
+  * click on open and u start use ur app
+
+   **version of the framework**
+   _rails -v:Rails 5.2.3_
+    _ruby -v:ruby 2.6.3p62_
+    
