@@ -1,7 +1,11 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
-    @tasks = Task.all.order("arrive DESC")
+    if params[:leave]
+    @tasks = Task.all.order("leave DESC")
+    else
+      @tasks = Task.all.order("created_at DESC")
+    end
   end
 
   def show

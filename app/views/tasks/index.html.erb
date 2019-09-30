@@ -1,7 +1,10 @@
-<p id="notice"><%= notice %></p>
+
 <h1><%= t('view.tasks') %></h1>
+<%= link_to 'New Task', new_task_path %>
+<br>
+<%= link_to 'sort by leave time', tasks_path(leave: "true")%>
     <% @tasks.each do |task| %>
-      <p>  <b> Name: </b> <%= task.name %> <br>
+      <p>  <b> Name: </b> <%= task.name %><br>
  <b> Details: </b><%= task.details %> <br>
   <b> Tokyo time:</b> <%= task.created_at %> <br>
   <b>Arrive time:</b> <%= task.arrive %> <br>
@@ -15,5 +18,4 @@
 
 <br>
 
-<%= link_to 'New Task', new_task_path %>
-<br>
+
