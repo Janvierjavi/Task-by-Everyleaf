@@ -4,23 +4,18 @@ class TasksController < ApplicationController
     if params[:leave]
     @tasks = Task.all.order("leave DESC")
     else
-      @tasks = Task.all.order("created_at DESC")
+      @tasks = Task.all
     end
   end
-
   def show
   end
-
   def new
     @task = Task.new
   end
-
   def edit
   end
-
   def create
     @task = Task.new(task_params)
-
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
@@ -31,7 +26,6 @@ class TasksController < ApplicationController
       end
     end
   end
-
   def update
     respond_to do |format|
       if @task.update(task_params)
@@ -43,7 +37,6 @@ class TasksController < ApplicationController
       end
     end
   end
-
   def destroy
     @task.destroy
     respond_to do |format|
@@ -51,12 +44,10 @@ class TasksController < ApplicationController
       format.json { head :no_content }
     end
   end
-
   private
     def set_task
       @task = Task.find(params[:id])
     end
-
     def task_params
       params.require(:task).permit(:name, :details, :arrive, :leave)
     end
