@@ -4,7 +4,7 @@ class TasksController < ApplicationController
     if params[:leave]
     @tasks = Task.all.order("leave DESC")
     else
-      @tasks = Task.search(params[:search])
+      @tasks = Task.all.order("created_at DESC")
     end
   end
   def show

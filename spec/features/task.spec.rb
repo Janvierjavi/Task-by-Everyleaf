@@ -19,8 +19,14 @@ RSpec.feature "Task management function", type: :feature do
     visit tasks_path
   end
   scenario "Test whether tasks are arranged in descending order of creation date" do
-    Task.all.order('arrive desc')
-    Task.order('arrive desc').to_a.should ==   Task.all.order('arrive desc')
+    Task.all.order('created_at desc')
+    Task.order('created_at desc').to_a.should ==   Task.all.order(' created_at desc')
+  end
+  scenario "Test sorting done by clicking the button " do
+    visit tasks_path
+    click_button"sort by leave time"
+    visit tasks_path
+    assert Task.all.order("leave DESC")
   end
 
 end
