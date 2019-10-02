@@ -4,7 +4,7 @@ class TasksController < ApplicationController
     if params[:leave]
     @tasks = Task.all.order("leave DESC")
     else
-      @tasks = Task.all
+      @tasks = Task.search(params[:search])
     end
   end
   def show
@@ -49,6 +49,6 @@ class TasksController < ApplicationController
       @task = Task.find(params[:id])
     end
     def task_params
-      params.require(:task).permit(:name, :details, :arrive, :leave)
+      params.require(:task).permit(:name, :details, :arrive, :leave, :status)
     end
 end

@@ -4,7 +4,7 @@ class CreateTasks < ActiveRecord::Migration[5.2]
       t.string :name
       t.text :details
       t.datetime :arrive  
-      t.datetime :leave   
+      t.datetime :leave 
       t.timestamps
     end
   end
