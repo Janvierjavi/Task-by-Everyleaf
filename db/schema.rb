@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2019_09_26_093156) do
     t.text "details", null: false
     t.datetime "arrive", null: false
     t.datetime "leave", null: false
+    t.string "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -9,9 +9,11 @@
     <% @tasks.each do |task| %>
       <p>  <b> Name: </b> <%= task.name %><br>
  <b> Details: </b><%= task.details %> <br>
+ <b>Status :</b> <%= task.status %> <br>
   <b> Tokyo time:</b> <%= task.created_at %> 
   <b>Arrive time:</b> <%= task.arrive %> 
   <b>leave time:</b> <%= task.leave %> <br>
+
      <%= link_to 'Show', task %>
       <%= link_to 'Update', edit_task_path(task) %>
        <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %></p>

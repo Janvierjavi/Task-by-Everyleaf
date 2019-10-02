@@ -1,8 +1,8 @@
 require 'rails_helper'
 RSpec.feature "Task management function", type: :feature do
   background do
-    Task.create!(name: 'test', details: 'hello guys', arrive: '2019-09-25 18:02:00 +0900' , leave: '2019-09-25 18:05:00 +0900')
-    Task.create!(name: 'task_02', details: 'put down.', arrive: '2019-09-25 18:02:00 +0900' , leave: '2019-09-25 18:05:00 +0900')
+    Task.create!(name: 'test', details: 'hello guys', status:'done', arrive: '2019-09-25 18:02:00 +0900' , leave: '2019-09-25 18:05:00 +0900')
+    Task.create!(name: 'task_02', details: 'put down.', status:'done', arrive: '2019-09-25 18:02:00 +0900' , leave: '2019-09-25 18:05:00 +0900')
   end
   scenario "Test task list" do
   visit tasks_path
@@ -15,7 +15,7 @@ RSpec.feature "Task management function", type: :feature do
          visit tasks_path
   end
   scenario "Test task details" do
-    Task.create!(name: 'test', details: 'hello guys', arrive: '2019-09-25 18:03:00 +0900' , leave: '2019-09-25 18:05:00 +0900')
+    Task.create!(name: 'test', details: 'hello guys', status:'done', arrive: '2019-09-25 18:03:00 +0900' , leave: '2019-09-25 18:05:00 +0900')
     visit tasks_path
   end
   scenario "Test whether tasks are arranged in descending order of creation date" do
