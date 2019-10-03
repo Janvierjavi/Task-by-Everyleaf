@@ -28,6 +28,13 @@
     <%= form.label :details %>
     <%= form.text_area :details %>
   </div>
+  <br>
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.radio_button :status,'not started' %> Not started
+    <%= form.radio_button :status,'in progress' %>In progress
+    <%= form.radio_button :status,'done' %> Done
+  </div>
 
   <div class="actions">
     <%= form.submit %>
