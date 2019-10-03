@@ -9,8 +9,7 @@ RSpec.feature "Task management function", type: :feature do
   end
   scenario "Test task creation" do
         visit new_task_path
-  fill_in 'Name', with: 'test'
-  fill_in 'Details', with: 'new details'
+  Task.create!(name: 'test', details: 'hello guys', status:'done', arrive: '2019-09-25 18:02:00 +0900' , leave: '2019-09-25 18:05:00 +0900')
   click_button '登録する'
          visit tasks_path
   end
@@ -19,7 +18,6 @@ RSpec.feature "Task management function", type: :feature do
     visit tasks_path
   end
   scenario "Test whether tasks are arranged in descending order of creation date" do
-    Task.all.order('created_at desc')
     Task.order('created_at desc').to_a.should ==   Task.all.order(' created_at desc')
   end
   scenario "Test sorting done by clicking the button " do

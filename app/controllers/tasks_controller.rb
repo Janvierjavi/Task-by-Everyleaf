@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
+    # @search = Task.search(params[:q])
+    # @tasks = @search.result
     if params[:leave]
     @tasks = Task.all.order("leave DESC")
     else
