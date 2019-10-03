@@ -11,4 +11,9 @@ class Task < ApplicationRecord
       #     errors.add(:leave, "please u time is under for arrive time")
       end
     end
+
+    def self.ransackable_attributes(auth_object = nil)
+      %w(name status)
+    end
+
 end

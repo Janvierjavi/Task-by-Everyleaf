@@ -5,6 +5,7 @@ class TasksController < ApplicationController
     @tasks = Task.all.order("leave DESC")
     else
       @tasks = Task.all
+    
     end
   end
   def show
