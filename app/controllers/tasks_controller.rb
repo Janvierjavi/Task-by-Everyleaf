@@ -1,8 +1,8 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
-    # @search = Task.search(params[:q])
-    # @tasks = @search.result
+  #   @search = Task.search(params[:q])
+  # @tasks = @search.result
     if params[:leave]
     @tasks = Task.all.order("leave DESC")
     else
@@ -10,6 +10,10 @@ class TasksController < ApplicationController
     end
   end
   def show
+  end
+  def search
+    @q = Task.ransack(params[:q])
+    @tasks = @q.result
   end
   def new
     @task = Task.new
