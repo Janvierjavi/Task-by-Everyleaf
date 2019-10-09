@@ -14,9 +14,9 @@ RSpec.feature "Task management function", type: :feature do
          visit tasks_path
   end
   scenario "Test task show" do
-    visit tasks_path
-    click_link 'Show'
-    expect(page).to have_content 'test'
+    task1=Task.first
+ visit task_path(id: task1.id)
+ expect(page).to have_content('hello guys')
     end
   scenario "Test whether tasks are arranged in descending order of creation date" do
  Task.all.order(' created_at desc')
