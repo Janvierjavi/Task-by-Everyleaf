@@ -1,12 +1,15 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
-  #   @search = Task.search(params[:q])
-  # @tasks = @search.result
-    if params[:leave]
-    @tasks = Task.all.order("leave DESC")
+    @search = Task.ransack(params[:q])
+    if params[:q]
+      @tasks = @search.result.page(params[:page])
+    elsif params[:leave]
+    @tasks = Task.all.order("leave DESC").page(params[:page])
+  elsif params[:priority]
+    @tasks = Task.all.order("priority DESC").page(params[:page])
     else
-      @tasks = Task.all.order("created_at DESC")
+      @tasks = Task.all.order("created_at DESC").page(params[:page])
     end
   end
   def show
@@ -55,6 +58,6 @@ class TasksController < ApplicationController
       @task = Task.find(params[:id])
     end
     def task_params
-      params.require(:task).permit(:name, :details, :arrive, :leave, :status)
+      params.require(:task).permit(:name, :details, :arrive, :leave, :status,  :priority)
     end
 end

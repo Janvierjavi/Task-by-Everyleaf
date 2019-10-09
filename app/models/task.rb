@@ -1,7 +1,9 @@
 class Task < ApplicationRecord
+  paginates_per 3
     validates :name, presence: true
     validates :status, presence: true
     validates :details, presence: true,  length:{ maximum:150 }
+    enum priority: [:Low, :Medium, :High]
     validate :arri
     def arri
       if arrive == leave 

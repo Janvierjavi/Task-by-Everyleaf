@@ -19,4 +19,22 @@ RSpec.describe Task, type: :model do
     task = Task.new( name:'hell', details: 'detaissssssss' )
     expect(task).not_to be_valid
   end
+
+  it "validation passes If details is described in status" do
+    # Describe the contents here
+    task = Task.new( status: 'in progress' )
+    expect(task).not_to be_valid
+  end
+  it "validation passes If details priority" do
+    # Describe the contents here
+    task = Task.new( priority: 'Low' )
+    expect(task).not_to be_valid
+  end
+
+  it "validation passes If details is described  arrive time and leave time" do
+    # Describe the contents here
+    task = Task.new( arrive: '2019-09-25 18:02:00 +0900' , leave: '2019-09-25 18:05:00 +0900' )
+    expect(task).not_to be_valid
+  end
+
 end

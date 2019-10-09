@@ -29,13 +29,18 @@
     <%= form.text_area :details %>
   </div>
   <br>
-  # <div class="field">
-  #   <%= form.label :status %>
-  #   <%= form.radio_button :status,'not started' %> Not started
-  #   <%= form.radio_button :status,'in progress' %>In progress
-  #   <%= form.radio_button :status,'done' %> Done
-  # </div>
-
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.radio_button :status,'Not started' %> Not started
+    <%= form.radio_button :status,'In progress' %>In progress
+    <%= form.radio_button :status,'Done' %> Done
+  </div>
+  <div class="field">
+    <%= form.label :priority %>
+    <%= form.radio_button :priority,'High' %> High
+    <%= form.radio_button :priority,'Medium' %>Medium
+    <%= form.radio_button :priority,'Low' %> Low
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>
