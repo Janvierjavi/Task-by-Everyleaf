@@ -38,12 +38,10 @@ RSpec.feature "Task management function", type: :feature do
       visit tasks_path
       expect(page).to have_content 'test'
     end
-  
     scenario "Test search by status" do
       visit tasks_path
       expect(page).to have_content 'high'
     end
-  
     scenario "Test search by both title and status" do
       visit tasks_path
       expect(page).to have_content 'test'
