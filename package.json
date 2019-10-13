@@ -1,8 +1,13 @@
 {
   "name": "myapp",
   "private": true,
+  "engines":{
+    "yarn": "1.19.1"
+  },
   "dependencies": {
-    "bootstrap": "4",
-    "jquery": "^3.4.1"
+    "bootstrap": "3",
+    "jquery": "^3.4.1",
+    "node":"10.16.0",
+    "npm": "6.10.2"
   }
 }
