@@ -2,7 +2,6 @@
   "name": "myapp",
   "private": true,
   "engines":{
-    "yarn": "1.19.1"
   },
   "dependencies": {
     "bootstrap": "3",
