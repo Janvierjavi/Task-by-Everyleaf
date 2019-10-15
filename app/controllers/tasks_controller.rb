@@ -1,16 +1,31 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
-    @search = Task.ransack(params[:q])
-    if params[:q]
-      @tasks = @search.result.page(params[:page])
-    elsif params[:leave]
-    @tasks = Task.all.order("leave DESC").page(params[:page])
-  elsif params[:priority]
-    @tasks = Task.all.order("priority DESC").page(params[:page])
-    else
-      @tasks = Task.all.order("created_at DESC").page(params[:page])
-    end
+  #   @search = Task.ransack(params[:q])
+  #   if params[:q]
+  #     @tasks = @search.result.page(params[:page])
+  #   elsif params[:leave]
+  #   @tasks = Task.all.order("leave DESC").page(params[:page])
+  # elsif params[:priority]
+  #   @tasks = Task.all.order("priority DESC").page(params[:page])
+  #   else
+  #     @tasks = Task.all.order("created_at DESC").page(params[:page])
+  #   end
+
+
+  @tasks = if params[:q]
+    Task.where('status LIKE ? or name LIKE ?', "%#{params[:q]}%","%#{params[:q]}%").page params[:page]
+  elsif params[:qii]
+    Task.where('name LIKE ?', "%#{params[:qii]}%").page params[:page]
+  elsif params[:qi]
+    Task.where('status LIKE ?', "%#{params[:qi]}%").page params[:page]
+  else
+    @tasks = Task.order_list(params[:sort_by]).page params[:page]
+  end
+
+
+
+
   end
   def show
   end

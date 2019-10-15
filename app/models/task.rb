@@ -19,4 +19,16 @@ class Task < ApplicationRecord
       all
     end
     end
+
+    def self.order_list(sort_order)
+      if sort_order == "created_at"
+        order(created_at: :desc)
+      elsif sort_order == "leave"
+        order(leave: :desc)
+      elsif sort_order == "priority"
+        order(priority: :asc)
+      else
+        order(arrive: :desc)
+      end
+    end
 end
