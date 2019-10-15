@@ -3,7 +3,7 @@
 <button><%= link_to 'sort by leave time',  tasks_path(leave: "true")%></button>
 <button><%= link_to 'sort by high priority', tasks_path(priority: "true")%></button>
 <%= search_form_for @search do |f| %>
-<%= f.label :name%>
+<%= f.label :Name_or_Status%>
 <%= f.text_field :name_or_status_cont%>
 <%= f.submit %>
   <%end%>

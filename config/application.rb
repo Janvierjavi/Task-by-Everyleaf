@@ -19,7 +19,7 @@ module Myapp
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local
     config.active_record.belongs_to_required_by_default = true
-
+    config.assets.initialize_on_precompile = false
     config.generators do |g|
       g.test_framework :rspec,
                        fixtures: true,
