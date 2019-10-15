@@ -1,4 +1,6 @@
+<div class="container-fluid">
 <h1><%= t('view.tasks') %></h1>
+<div class="row">
 <p> <button><%= link_to 'New Task', new_task_path %></button>
 <button><%= link_to 'sort by leave time',  tasks_path(sort_by: "leave")%></button>
 <button><%= link_to 'sort by high priority', tasks_path(sort_by: "priority")%></button>
@@ -15,24 +17,37 @@
  <%= text_field_tag :q, params[:q],placeholder:'  search by both name or status' %>
  <%= submit_tag 'Search', name: nil %>
 <% end %><br>
-
-
-
 </p>
-    <% @tasks.each do |task| %>
-      <p>  <b> Name: </b> <%= task.name %><br>
- <b> Details: </b><%= task.details %> <br>
- <b>Status: </b> <%= task.status %> <br>
- <b> priority: </b> <%= task.priority %> <br>
-  <b> Tokyo time: </b> <%= task.created_at %>  
-  <b>Arrive time: </b> <%= task.arrive %> 
-  <b>leave time: </b> <%= task.leave %> <br>
-    <%= link_to 'Show', task %>
-      <%= link_to 'Update', edit_task_path(task),class:'btn btn-primary' %>
-       <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-       <hr>
-    <% end %>
-    <%= paginate @tasks %>
-<br>
+</div>
+<% @tasks.each do |task| %>
+<div class="card text-center m-3 position-relative" style="width: 35rem; left:20rem;">
+  <div class="card-header row m-1">
+  <div class="col col-lg-5 font-italic ">
+  Status:<%= task.status %>
+  </div>
+  <div class="col-md-auto h4">
+   <%= task.name %>
+   </div>
+   <div class="col col-lg-4 font-italic ">
+  <td> priority:  <%= task.priority %>
+</div>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Detail</h5>
+    <p class="card-text"><%= task.details %></p>
+    <%= link_to 'Show', task,class:'btn btn-outline-success btn-sm'%>
+      <%= link_to 'Update', edit_task_path(task),class:'btn btn-outline-primary btn-sm' %>
+       <%= link_to 'Delete', task,class:'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+  <div class="card-footer text-muted">
+  <b> Tokyo: </b> <%= task.created_at %>
+  <b>Arrive: </b> <%= task.arrive %> 
+  <b>leave:</b> <%= task.leave %>
+  </div>
+</div>
+<% end %>
 
+
+    <%= paginate @tasks %>
+</div>
 

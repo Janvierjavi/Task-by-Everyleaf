@@ -12,7 +12,6 @@ class TasksController < ApplicationController
   #     @tasks = Task.all.order("created_at DESC").page(params[:page])
   #   end
 
-
   @tasks = if params[:q]
     Task.where('status LIKE ? or name LIKE ?', "%#{params[:q]}%","%#{params[:q]}%").page params[:page]
   elsif params[:qii]
@@ -22,10 +21,6 @@ class TasksController < ApplicationController
   else
     @tasks = Task.order_list(params[:sort_by]).page params[:page]
   end
-
-
-
-
   end
   def show
   end
