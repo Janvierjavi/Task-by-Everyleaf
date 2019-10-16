@@ -25,13 +25,13 @@ RSpec.feature "Task management function", type: :feature do
   end
   scenario "Test task for sorting by leaving time " do
     visit tasks_path
-    click_button"sort by leave time"
+    click_link"leave time"
     visit tasks_path
     assert Task.all.order("leave DESC")
   end 
   scenario "Test sorting by high priority" do
     visit tasks_path
-    click_button"sort by high priority"
+    click_link"High priority"
     assert Task.all.order("priority DESC")
     end
     scenario "Test search by title" do
@@ -40,7 +40,7 @@ RSpec.feature "Task management function", type: :feature do
     end
     scenario "Test search by status" do
       visit tasks_path
-      expect(page).to have_content 'high'
+      expect(page).to have_content 'done'
     end
     scenario "Test search by both title and status" do
       visit tasks_path
