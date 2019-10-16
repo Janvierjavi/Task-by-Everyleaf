@@ -10,38 +10,49 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div><br>
-  <div class="field">
+  <div class="card m-5" style="width: 30rem; left:20rem;">
+  <div class="card-body">
+  <h5 class="card-title text-center">New post</h5>
+  <div class="field text-center">
+    <%= form.label :name %><br>
+    <%= form.text_field :name, class:'form-control-sm' %>
+  </div>
+  <div class="field text-center">
+  <%= form.label :details %><br>
+  <%= form.text_area :details, class:'form-control' %>
+</div> 
+  </div>
+  <ul class="list-group list-group-flush text-center">
+    <li class="list-group-item">
+    <div class="field">
     <%= form.label :arrive %>
     <%= form.datetime_select :arrive %>
-  </div><br>
+  </div></li>
+    <li class="list-group-item">
+    <div class="field">
+      <%= form.label :leave %>
+      <%= form.datetime_select :leave %>
+    </div>
+    </li>
+  </ul>
+  <div class="card-body">
+  
   <div class="field">
-    <%= form.label :leave %>
-    <%= form.datetime_select :leave %>
-  </div>
-  <br>
-  <div class="field">
-    <%= form.label :details %>
-    <%= form.text_area :details %>
-  </div>
-  <br>
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.radio_button :status,'Not started' %> Not started
-    <%= form.radio_button :status,'In progress' %>In progress
-    <%= form.radio_button :status,'Done' %> Done
-  </div>
-  <div class="field">
-    <%= form.label :priority %>
+  <%= form.label :status %><br>
+  <%= form.radio_button :status,'Not started' %> Not started
+  <%= form.radio_button :status,'In progress' %>In progress
+  <%= form.radio_button :status,'Done' %> Done
+</div>
+<div class="field">
+    <%= form.label :priority %><br>
     <%= form.radio_button :priority,'High' %> High
     <%= form.radio_button :priority,'Medium' %>Medium
     <%= form.radio_button :priority,'Low' %> Low
   </div>
-  <div class="actions">
+  </div>
+  <div class="actions card-footer  text-center">
     <%= form.submit %>
   </div>
+</div>
+  
 <% end %>
