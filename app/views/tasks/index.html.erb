@@ -1,11 +1,11 @@
 <div class="">
 <div class="nav-item dropdown" style="width: 10rem; left:65rem;">
-<a class="nav-link dropdown-toggle fas fa-search" data-toggle="dropdown" href="#">Search</a>
+<a class="nav-link fas fa-search" data-toggle="dropdown" href="#">Search</a>
 <div class="dropdown-menu">
     <%= search_form_for @search do |f| %>
 <%= f.label :Name_and_status, class:''%>
-    <%= f.text_field :name_cont, class:'form-group dropdown-item', placeholder:'name'%>
-      <%= f.text_field :status_cont, class:'form-group dropdown-item', placeholder:'status'%>
+    <%= f.text_field :name_cont, class:'form-group rounded mx-2', placeholder:'name'%>
+      <%= f.text_field :status_cont, class:'form-group rounded mx-2', placeholder:'status'%>
       <%= f.submit "search",class:'btn-primary col-sm mr-1 rounded '%>
            <%end%>
 </div>
