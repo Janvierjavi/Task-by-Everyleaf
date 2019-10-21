@@ -1,3 +1,16 @@
+<div class="">
+<div class="nav-item dropdown" style="width: 10rem; left:65rem;">
+<a class="nav-link dropdown-toggle fas fa-search" data-toggle="dropdown" href="#">Search</a>
+<div class="dropdown-menu">
+    <%= search_form_for @search do |f| %>
+<%= f.label :Name_and_status, class:''%>
+    <%= f.text_field :name_cont, class:'form-group dropdown-item', placeholder:'name'%>
+      <%= f.text_field :status_cont, class:'form-group dropdown-item', placeholder:'status'%>
+      <%= f.submit "search",class:'btn-primary col-sm mr-1 rounded '%>
+           <%end%>
+</div>
+</div>
+<div>
 <div class="container-fluid">
 <% @tasks.each do |task| %>
 <div class="card text-center m-3 position-relative" style="width: 35rem; left:20rem;">
@@ -21,11 +34,10 @@
   </div>
   <div class="card-footer text-muted">
   <b> Tokyo: </b> <%= task.created_at %>
-  <b>Arrive: </b> <%= task.arrive %> 
+  <b>Arrive: </b> <%= task.arrive %>
   <b>leave:</b> <%= task.leave %>
   </div>
 </div>
 <% end %>
     <%= paginate @tasks %>
 </div>
-

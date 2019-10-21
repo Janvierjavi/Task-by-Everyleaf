@@ -6,19 +6,19 @@ class Task < ApplicationRecord
     enum priority: [:Low, :Medium, :High]
     validate :arri
     def arri
-      if arrive == leave 
+      if arrive == leave
         errors.add(:leave, "must be be different to arrive time")
          elsif leave <= arrive
            errors.add(:leave, "please u time is under for arrive time")
       end
     end
-    def self.search(search)
-    if search
-      where(["name LIKE ?", "%#{search}%"])
-    else 
-      all
-    end
-    end
+    # def self.search(search)
+    # if search
+    #   where(["name LIKE ?", "%#{search}%"])
+    # else
+    #   all
+    # end
+    # end
 
     def self.order_list(sort_order)
       if sort_order == "created_at"
@@ -26,9 +26,9 @@ class Task < ApplicationRecord
       elsif sort_order == "leave"
         order(leave: :desc)
       elsif sort_order == "priority"
-        order(priority: :asc)
+        order(priority: :desc)
       else
-        order(arrive: :desc)
+        order(created_at: :desc)
       end
     end
 end
