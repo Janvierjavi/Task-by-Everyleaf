@@ -12,12 +12,11 @@ class TasksController < ApplicationController
          @tasks = Task.all.order("created_at desc").page(params[:page])
        end
   end
+  
+
   def show
   end
-  def search
-    @q = Task.ransack(params[:q])
-    @tasks = @q.result
-  end
+
   def new
     @task = Task.new
   end

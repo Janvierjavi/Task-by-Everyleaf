@@ -12,14 +12,10 @@ class Task < ApplicationRecord
            errors.add(:leave, "please u time is under for arrive time")
       end
     end
-    # def self.search(search)
-    # if search
-    #   where(["name LIKE ?", "%#{search}%"])
-    # else
-    #   all
-    # end
-    # end
-
+    def search
+      @q = Task.ransack(params[:q])
+      @tasks = @q.result
+    end
     def self.order_list(sort_order)
       if sort_order == "created_at"
         order(created_at: :desc)
