@@ -1,22 +1,22 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
-  @tasks = if params[:q]
-    Task.where('status LIKE ? or name LIKE ?', "%#{params[:q]}%","%#{params[:q]}%").page params[:page]
-  elsif params[:qii]
-    Task.where('name LIKE ?', "%#{params[:qii]}%").page params[:page]
-  elsif params[:qi]
-    Task.where('status LIKE ?', "%#{params[:qi]}%").page params[:page]
-  else
-    @tasks = Task.order_list(params[:sort_by]).page params[:page]
+      @search = Task.ransack(params[:q])
+       if params[:q]
+         @tasks = @search.result.page(params[:page])
+       elsif params[:leave]
+       @tasks = Task.all.order("leave DESC").page(params[:page])
+     elsif params[:priority]
+       @tasks = Task.all.order("priority DESC").page(params[:page])
+       else
+         @tasks = Task.all.order("created_at desc").page(params[:page])
+       end
   end
-  end
+  
+
   def show
   end
-  def search
-    @q = Task.ransack(params[:q])
-    @tasks = @q.result
-  end
+
   def new
     @task = Task.new
   end

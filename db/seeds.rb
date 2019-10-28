@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+#first user manualy in seed.rd
+
+User.new({ name: "janvier", email: 'janvier@rubyonrails.com',birth_day:'2019-09-25', password: 'password', password_confirmation: 'password'})
