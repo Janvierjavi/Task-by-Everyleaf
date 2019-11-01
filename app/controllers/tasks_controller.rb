@@ -12,11 +12,8 @@ class TasksController < ApplicationController
          @tasks = Task.all.order("created_at desc").page(params[:page])
        end
   end
-  
-
   def show
   end
-
   def new
     @task = Task.new
   end
@@ -33,6 +30,11 @@ class TasksController < ApplicationController
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
+  end
+  def confirm
+    @task = Task.new(blog_params)
+    @task.user_id = current_user.id
+    render :new if @task.invalid?
   end
   def update
     respond_to do |format|
