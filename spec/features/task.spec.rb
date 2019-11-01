@@ -10,7 +10,7 @@ RSpec.feature "Task management function", type: :feature do
         visit new_task_path
         fill_in 'Name', with: 'test'
         fill_in 'Details', with: 'hello guys'
-  click_button '登録する'
+  click_button 'create task'
          visit tasks_path
   end
   scenario "Test task show" do
@@ -28,7 +28,7 @@ RSpec.feature "Task management function", type: :feature do
     click_link"leave time"
     visit tasks_path
     assert Task.all.order("leave DESC")
-  end 
+  end
   scenario "Test sorting by high priority" do
     visit tasks_path
     click_link"High priority"
@@ -47,5 +47,5 @@ RSpec.feature "Task management function", type: :feature do
       expect(page).to have_content 'test'
       expect(page).to have_content 'done'
     end
-  
+
 end
