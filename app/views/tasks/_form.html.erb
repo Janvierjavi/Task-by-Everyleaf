@@ -1,3 +1,6 @@
+
+  <div class="card m-5" style="width: 30rem; left:20rem;">
+
 <%= form_with(model: task, local: true) do |form| %>
   <% if task.errors.any? %>
     <div id="error_explanation">
@@ -9,13 +12,16 @@
       </ul>
     </div>
   <% end %>
-  <div class="card m-5" style="width: 30rem; left:20rem;">
+
   <div class="card-body">
   <h5 class="card-title text-center">New post</h5>
   <div class="field text-center">
     <%= form.label :name %><br>
     <%= form.text_field :name, class:'form-control-sm' %>
   </div>
+  <% if logged_in? %>
+    <%= form.hidden_field :user_id, value: current_user.id %>
+    <%end%>
   <div class="field text-center">
   <%= form.label :details %><br>
   <%= form.text_area :details, class:'form-control' %>

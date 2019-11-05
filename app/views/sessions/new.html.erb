@@ -1,11 +1,16 @@
-<h1>Log in</h1>
+  <div class="card " style="width:550px; left:25rem; top:10rem;">
 <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
 
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-
-  <%= f.submit "Log in" %>
+  <h4 class="text-center">Task by Everyleaf Co., Ltd. (For new employee)</h4>
+  <div class="card-body ">
+  <%= f.email_field :email, placeholder:"email", class:"form-control mb-3" %>
+  <%= f.password_field :password, placeholder:"password", class:"form-control mb-3"  %>
+  <%= f.submit "Log in", class:"form-control mb-3 btn-primary" %>
+  </div>
+</div>
 <% end %>
+<div class="card bg-light m-2" style="width:400px; left:30rem; top:8rem;">
+    <div class="card-body text-center">
+      <p class="card-text">Haven't any account?  <%= link_to "Sign Up", new_user_path %></p>
+    </div>
+  </div>

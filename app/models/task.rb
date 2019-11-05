@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-  has_one :user
+  belongs_to :user
   paginates_per 3
     validates :name, presence: true
     validates :status, presence: true

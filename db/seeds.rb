@@ -7,5 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #first user manualy in seed.rd
-
-User.new({ name: "janvier", email: 'janvier@rubyonrails.com',birth_day:'2019-09-25', password: 'password', password_confirmation: 'password'})
+User.create!(name: 'janvier', email: 'janvier@dive.com', password: '123456', password_confirmation: '123456', adminb: true )
+User.create!(name: 'mutuyimana', email: 'mutuyimana@dive.com', password: '123456', password_confirmation: '123456' )

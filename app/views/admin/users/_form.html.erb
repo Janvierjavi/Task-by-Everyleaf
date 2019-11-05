@@ -35,10 +35,11 @@
     <%= form.label :password_confirmation %>
     <%= form.password_field :password_confirmation, class:"form-control mb-3" %>
   </div>
-
-    
+  <div class="field">
+  <%= form.label :admin %>
+    <%= form.radio_button :adminb ,'true' %>
+  </div>
   <div class="actions">
     <%= form.submit "create user" , class:"form-control btn-primary" %>
   </div>
-
 <% end %>

@@ -21,6 +21,7 @@ class TasksController < ApplicationController
   end
   def create
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }

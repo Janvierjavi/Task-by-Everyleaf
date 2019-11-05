@@ -10,8 +10,10 @@
   </head>
   <body>
 <div class="container-fluid">
+<% if logged_in? %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light ">
   <a class="navbar-brand" href="#">Everyleaf Co.Ltd</a>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -33,21 +35,18 @@
           <div class="dropdown-divider"></div>
           <%= link_to 'High priority', tasks_path(priority: "true"), class:'dropdown-item'%>
           <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
         </div>
       </li>
   </ul>
+  <%= link_to "Profile", user_path(current_user.id), class: 'btn btn-dark fas fa-user-circle mr-2 ' %>
+  <%= link_to "Logout", session_path(current_user.id), method: :delete, class: 'btn btn-dark fas fa-sign-out-alt  ' %>
   </div>
 </nav>
 <% flash.each do |key, value| %>
     <%= content_tag(:div, value, class: "#{key}") %>
   <% end %>
-  <% if logged_in? %>
-  <%= link_to "Profile", user_path(current_user.id) %>
-  <%= link_to "Logout", session_path(current_user.id), method: :delete %>
-<% else %>
-  <%= link_to "Sign up", new_user_path %>
-  <%= link_to "Login", new_session_path %>
+
+
 <% end %>
     <%= yield %>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

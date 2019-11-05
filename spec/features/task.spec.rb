@@ -1,15 +1,26 @@
 require 'rails_helper'
 RSpec.feature "Task management function", type: :feature do
   background do
-    Task.create!(name: 'test', details: 'hello guys', status:'done', priority:'High', arrive: '2019-09-25 18:02:00 +0900' , leave: '2019-09-25 18:05:00 +0900')
+  user =  User.create(name: 'janvier',
+                             email: 'janvier@gmail.com',
+                             password: 'password',
+                             password_confirmation: 'password')
+    visit new_session_path
+    fill_in 'email', with: 'janvier@gmail.com'
+    fill_in 'password', with: 'password'
+        visit tasks_path
+    @user = User.first
+    # current_user.should == @user
+    Task.create!(name: 'test', details: 'hello guys', status:'done',user_id: @user.id, priority:'High', arrive: '2019-09-25 18:02:00 +0900' , leave: '2019-09-25 18:05:00 +0900')
   end
   scenario "Test task list" do
+    login_as(current_user)
+
   visit tasks_path
   end
   scenario "Test task creation" do
         visit new_task_path
-        fill_in 'Name', with: 'test'
-        fill_in 'Details', with: 'hello guys'
+        Task.create!(name: 'test', details: 'hello guys', status:'done',user_id: @user.id, priority:'High', arrive: '2019-09-25 18:02:00 +0900' , leave: '2019-09-25 18:05:00 +0900')
   click_button 'create task'
          visit tasks_path
   end
@@ -24,14 +35,18 @@ RSpec.feature "Task management function", type: :feature do
  expect(page).to have_content 'test'
   end
   scenario "Test task for sorting by leaving time " do
-    visit tasks_path
-    click_link"leave time"
+    visit new_session_path
+        fill_in 'email', with: 'test@gmail.com'
+      fill_in "Password", with: '1234567'
+      click_button "Log in"
+      visit tasks_path
+    # click_link "leave time"
     visit tasks_path
     assert Task.all.order("leave DESC")
   end
   scenario "Test sorting by high priority" do
     visit tasks_path
-    click_link"High priority"
+    # click_link"High priority"
     assert Task.all.order("priority DESC")
     end
     scenario "Test search by title" do
