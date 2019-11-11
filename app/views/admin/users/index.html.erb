@@ -1,37 +1,39 @@
+<% if current_user.adminb? %>
 <p id="notice"><%= notice %></p>
-
-<h1>Users</h1>
-
-<table>
-  <thead>
+<div class="text-center rounded " style="width: 35rem; background-color:#F0F8FF;">
+<h4 >Users list</h4>
+<table class="position-relative " style="width: 35rem;" >
+  <thead  >
     <tr>
       <th>Name</th>
       <th>Email</th>
+      <th>Admin</th>
       <th colspan="3"></th>
     </tr>
   </thead>
-
-  <tbody>
+  <tbody >
     <% @users.each do |user| %>
-      <tr>
+
+      <tr class="border-bottom">
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.adminb %></td>
-        <td><%= link_to 'Show', admin_users_path(user) %></td>
-        <td><%= link_to 'Edit', edit_admin_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_users_path(user), class:'btn btn-success btn-sm' %></td>
+        <td><%= link_to 'Edit', edit_admin_user_path(user), class:'btn btn-primary btn-sm' %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger btn-sm' %></td>
       </tr>
     <% end %>
+
+
   </tbody>
 </table>
-
 <br>
-
-<%= link_to 'New User', new_user_path %>
-
+<%= link_to 'New User', new_user_path, class:' btn btn-outline-info btn-sm mb-2' %>
+</div>
 <div class="container-fluid">
 <% @tasks.each do |task| %>
-<div class="card text-center m-3 position-relative" style="width: 35rem; left:20rem;">
+<div class="card text-center m-3 position-absolute float-top" style="width: 35rem; left:38rem; bottom:210px; ">
+  <h4 >Task</h4>
   <div class="card-header row m-1">
   <div class="col col-lg-5 text-monospace ">
   Status:<%= task.status %>
@@ -60,8 +62,5 @@
   </div>
 </div>
 <% end %>
-
-
-
-
 </div>
+<% end %>

@@ -4,6 +4,9 @@ class User < ApplicationRecord
   validates :email,uniqueness: true, length: { maximum: 30 }, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }
   validates :name,  presence: true, length: { maximum: 19 }
   has_many :tasks
+  has_many :labels
+
+
   def self.adminu
    @users = User.all
  @adminu=0

@@ -9,11 +9,11 @@ class SessionsController < ApplicationController
           redirect_to admin_users_path
           flash[:notice] = 'welcome on ur page of admin'
         else
-      redirect_to tasks_path(user.id)
+      redirect_to tasks_path
       flash[:notice] = 'welcome on ur user page'
     end
     else
-      flash[:danger] = 'Failed to login'
+      flash[:notice] = 'Failed to login'
       render 'new'
     end
   end

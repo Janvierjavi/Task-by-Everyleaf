@@ -11,8 +11,10 @@ class TasksController < ApplicationController
        else
          @tasks = Task.all.order("created_at desc").page(params[:page])
        end
+       @labels = Label.all
   end
   def show
+
   end
   def new
     @task = Task.new
@@ -60,6 +62,6 @@ class TasksController < ApplicationController
       @task = Task.find(params[:id])
     end
     def task_params
-      params.require(:task).permit(:name, :details, :arrive, :leave, :status,  :priority)
+      params.require(:task).permit(:name, :details, :arrive, :leave, :status,  :priority, label_ids:[])
     end
 end

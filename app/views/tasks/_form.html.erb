@@ -54,6 +54,13 @@
     <%= form.radio_button :priority,'Low' %> Low
   </div>
   </div>
+  <h4><%= form.label :labels %></h4><br />
+       <% Label.all.each do |label| %>
+           <% if label.user.id == current_user.id %>
+           <%= form.label:tittle, label.tittle %>
+           <%= form.check_box :label_ids, { multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false }, label[:id] %>
+         <% end %>
+       <% end %>
   <div class="actions card-footer  text-center">
     <%= form.submit "create task" %>
   </div>
