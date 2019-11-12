@@ -19,7 +19,7 @@
     <%= form.label :name %><br>
     <%= form.text_field :name, class:'form-control-sm' %>
   </div>
-  <% if logged_in? %>
+  <% if logged_in?  %>
     <%= form.hidden_field :user_id, value: current_user.id %>
     <%end%>
   <div class="field text-center">

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :labels
-  get 'sessions/new'
+  # get 'sessions/new'
   resources :users
   namespace :admin do
     resources :users
