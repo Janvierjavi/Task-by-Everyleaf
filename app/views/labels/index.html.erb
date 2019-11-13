@@ -1,8 +1,8 @@
-<p id="notice"><%= notice %></p>
+<div class="text-center rounded " style="width: 35rem; background-color:#F0F8FF;">
 
 <h1>Labels</h1>
 
-<table>
+<table class="position-relative " style="width: 35rem;">
   <thead>
     <tr>
       <th>Tittle</th>
@@ -13,10 +13,10 @@
 
   <tbody>
     <% @labels.each do |label| %>
-      <tr>
+      <tr class="border-bottom">
         <td><%= label.tittle %></td>
-        <td><%= label.user %></td>
-        <td><%= link_to 'Show', label %></td>
+        <td><%= label.user.name %></td>
+        <td><%= link_to 'Show', label, class:'btn btn-success btn-sm' %></td>
         <td><%= link_to 'Edit', edit_label_path(label) %></td>
         <td><%= link_to 'Destroy', label, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

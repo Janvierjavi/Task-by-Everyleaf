@@ -7,6 +7,13 @@
     <%= f.text_field :name_cont, class:'form-group rounded mx-2', placeholder:'name'%>
       <%= f.text_field :status_cont, class:'form-group rounded mx-2', placeholder:'status'%>
       <%= f.submit "search",class:'btn-dark col-sm mr-1 rounded '%>
+      <div class=" m-2">
+      <%= form_tag(tasks_path, method: :get) do %>
+<p class="text-center">search for label </p>
+  <%= text_field_tag :key, params[:key], class:'form-group rounded mx-2' %>
+  <%= submit_tag 'Search label',  class:"btn-dark col-sm mr-1 rounded"%>
+<% end %>
+</div>
            <%end%>
 </div>
 </div>
@@ -27,10 +34,15 @@
   </div>
   <div class="card-body">
     <div class="col-md-auto h6">
-    <p class="text-left"> Task Name:<%= task.name %> </p>
+    <p class="text-left "> Task Name:<%= task.name %> </p>
      </div>
     <h5 class="card-title">Detail</h5
     <p class="card-text"><%= task.details %></p>
+    <% task.labels.each do |label| %>
+    <div class="col-md-auto h6 " style="left:200px; bottom:110px;">
+    <p class="text-left fas fa-tags"><%= label.tittle %> </p>
+     </div>
+     <%end%>
     <%= link_to 'Show', task,class:'btn btn-outline-success btn-sm'%>
       <%= link_to 'Update', edit_task_path(task),class:'btn btn-outline-primary btn-sm' %>
        <%= link_to 'Delete', task,class:'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %>

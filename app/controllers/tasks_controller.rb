@@ -8,10 +8,13 @@ class TasksController < ApplicationController
        @tasks = Task.all.order("leave DESC").page(params[:page])
      elsif params[:priority]
        @tasks = Task.all.order("priority DESC").page(params[:page])
-       else
-         @tasks = Task.all.order("created_at desc").page(params[:page])
+       elsif  params[:key]
+            @tasks = Task.joins(:labels)
+              .where("labels.title LIKE ?", "%#{params[:key]}%").page(params[:page])
+            else
+              @tasks = Task.all.order("created_at desc").page(params[:page])
        end
-       @labels = Label.all
+
   end
   def show
 

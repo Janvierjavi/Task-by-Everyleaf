@@ -1,27 +1,30 @@
-<%= form_with(model: label, local: true) do |form| %>
-  <% if label.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(label.errors.count, "error") %> prohibited this label from being saved:</h2>
+<div class="card text-center" style="width: 20rem; left:30rem; top:20px;">
+  <div class="card-body"><%= form_with(model: label, local: true) do |form| %>
+    <% if label.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(label.errors.count, "error") %> prohibited this label from being saved:</h2>
 
-      <ul>
-      <% label.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% label.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <h1>New Label</h1>
+
+    <div class="field m-3">
+      <%= form.label :tittle %><br>
+      <%= form.text_field :tittle, class:'form-control' %>
     </div>
-  <% end %>
+  <% if logged_in? %>
+    <div class="field">
+        <%= form.hidden_field :user_id, value: current_user.id %>
+    </div>
+    <%end%>
 
-  <div class="field">
-    <%= form.label :tittle %>
-    <%= form.text_field :tittle %>
-  </div>
-<% if logged_in? %>
-  <div class="field">
-      <%= form.hidden_field :user_id, value: current_user.id %>
-  </div>
-  <%end%>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+    <div class="actions">
+      <%= form.submit "create label", class:'m-1 btn btn-primary'%>
+    </div>
+  <% end %></div>
+</div>

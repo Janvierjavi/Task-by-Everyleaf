@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_11_11_114025) do
   end
 
   create_table "tasks_labels", force: :cascade do |t|
+    t.integer "label_id"
     t.bigint "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
