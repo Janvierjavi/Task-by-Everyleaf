@@ -1,5 +1,5 @@
 
-<% if logged_in? %>
+
 
 <div class="card" style="width:400px; left:30rem;">
   <div class="card-body">
@@ -31,11 +31,3 @@
 </div>
 
 </div>
-<% else %>
-<div class="card bg-light m-2" style="width:400px; left:30rem; top:8rem;">
-    <div class="card-body text-center">
-      <p class="card-text">pls log in for get acess to this page   <%= link_to "Log in", new_session_path %></p>
-    </div>
-  </div>
-
-<%end%>

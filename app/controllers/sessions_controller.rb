@@ -12,9 +12,6 @@ class SessionsController < ApplicationController
       redirect_to tasks_path
       flash[:notice] = 'welcome on ur user page'
           end
-    elsif
-      redirect_to new_session_path
-        flash[:notice] = 'pls login '
     else
       flash[:notice] = 'Failed to login'
       render 'new'

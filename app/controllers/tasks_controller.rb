@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
+  before_action :pamermition
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
-    
+
       @search = Task.ransack(params[:q])
        if params[:q]
          @tasks = @search.result.page(params[:page])
@@ -68,4 +69,6 @@ class TasksController < ApplicationController
     def task_params
       params.require(:task).permit(:name, :details, :arrive, :leave, :status,  :priority, label_ids:[])
     end
+
+
 end

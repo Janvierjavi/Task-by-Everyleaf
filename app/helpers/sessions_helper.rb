@@ -6,4 +6,10 @@ module SessionsHelper
       def logged_in?
         current_user.present?
       end
+      def pamermition
+      if  session[:user_id] == nil
+        redirect_to new_session_path
+        false
+      end
+      end
 end
