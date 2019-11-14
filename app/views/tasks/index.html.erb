@@ -1,3 +1,4 @@
+<% if logged_in? %>
 <div class="">
 <div class="nav-item dropdown" style="width: 10rem; left:65rem;">
 <a class="nav-link fas fa-search" data-toggle="dropdown" href="#">Search</a>
@@ -56,3 +57,11 @@
   <%= paginate @tasks %>
     <% end %>
  <% end %>
+   <% else %>
+   <div class="card bg-light m-2" style="width:400px; left:30rem; top:8rem;">
+       <div class="card-body text-center">
+         <p class="card-text">pls log in for get acess to this page   <%= link_to "Log in", new_session_path %></p>
+       </div>
+     </div>
+
+   <% end %>
