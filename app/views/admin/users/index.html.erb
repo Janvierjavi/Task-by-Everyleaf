@@ -7,6 +7,7 @@
       <th>Name</th>
       <th>Email</th>
       <th>Admin</th>
+      <th>Tasks_no</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,7 +18,8 @@
         <td><%= user.name %></td>
         <td><%= user.email %></td>
         <td><%= user.adminb %></td>
-        <td><%= link_to 'Show', admin_users_path(user), class:'btn btn-success btn-sm' %></td>
+        <td> <%= Task.where(user_id: user.id).count %></td>
+        <td><%= link_to 'Show', admin_user_path(user), class:'btn btn-success btn-sm' %></td>
         <td><%= link_to 'Edit', edit_admin_user_path(user), class:'btn btn-primary btn-sm' %></td>
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger btn-sm' %></td>
       </tr>
@@ -31,7 +33,7 @@
 </div>
 <div class="container-fluid">
 <% @tasks.each do |task| %>
-<div class="card text-center m-3 position-absolute float-top" style="width: 35rem; left:38rem; bottom:210px; ">
+<div class="card text-center m-3 position-absolute float-top" style="width: 35rem; left:38rem; bottom:180px; ">
   <h4 >Task</h4>
   <div class="card-header row m-1">
   <div class="col col-lg-5 text-monospace ">
