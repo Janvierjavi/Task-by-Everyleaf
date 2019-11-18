@@ -1,13 +1,13 @@
 <div class="card " style="width:550px; left:25rem; top:2rem;">
 <h4 class="text-center">Task by Everyleaf Co., Ltd. (For new employee)</h4>
-<%= form_with(model: user, local: true) do |form| %>
+<%= form_with(model: admin_user, local: true) do |form| %>
 <div class="card-body ">
-  <% if user.errors.any? %>
+  <% if admin_user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <h2><%= pluralize(admin_user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
-      <% user.errors.full_messages.each do |message| %>
+      <% admin_user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
