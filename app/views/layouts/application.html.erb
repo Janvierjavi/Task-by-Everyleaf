@@ -26,6 +26,7 @@
       <li class="nav-item">
       <%= link_to 'New Task', new_task_path, class:'nav-link'  %>
       </li>
+
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
      Sorting_by
@@ -50,8 +51,15 @@
   </div>
   </li>
     </ul>
+    <% if current_user.admin? %>
+      <%= link_to "Users List", admin_users_path, class: 'nav-link' %>
+  <%= link_to "Profile", admin_user_path(current_user.id), class: 'btn btn-dark fas fa-user-circle mr-2 ' %>
+  <%else%>
   <%= link_to "Profile", user_path(current_user.id), class: 'btn btn-dark fas fa-user-circle mr-2 ' %>
+  <% end %>
   <%= link_to "Logout", session_path(current_user.id), method: :delete, class: 'btn btn-dark fas fa-sign-out-alt  ' %>
+
+
   </div>
 </nav>
 <% flash.each do |key, value| %>

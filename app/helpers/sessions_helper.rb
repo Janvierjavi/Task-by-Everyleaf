@@ -9,7 +9,7 @@ module SessionsHelper
       def pamermition
       if session[:user_id] == nil
         redirect_to new_session_path
-        flash[:notice] = 'welcome on ur page of admin'
+        flash[:notice] = 'welcome on ur page'
         false
       end
       end

@@ -1,14 +1,46 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
 </p>
-
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<% @tasks.each do |task| %>
+<% if @user.id == task.user.id %>
+<div class="card text-center m-3 position-relative" style="width: 35rem; left:20rem;">
+  <div class="card-header row m-1">
+  <div class="col col-lg-5 text-monospace ">
+  Status:<%= task.status %>
+  </div>
+  <div class="col  h4" style="left:20px;">
+   <%= task.user.name %>
+   </div>
+   <div class="col col-lg-4 font-italic" style="left:0px;">
+  <td> priority:  <%= task.priority %>
+</div>
+  </div>
+  <div class="card-body">
+    <div class="col-md-auto h6">
+    <p class="text-left "> Task Name:<%= task.name %> </p>
+     </div>
+    <h5 class="card-title">Detail</h5
+    <p class="card-text"><%= task.details %></p>
+    <% task.labels.each do |label| %>
+    <div class="col-md-auto h6 " style="left:200px; bottom:110px;">
+    <p class="text-left fas fa-tags"><%= label.tittle %> </p>
+     </div>
+     <%end%>
+    <%= link_to 'Show', task,class:'btn btn-outline-success btn-sm'%>
+      <%= link_to 'Update', edit_task_path(task),class:'btn btn-outline-primary btn-sm' %>
+       <%= link_to 'Delete', task,class:'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+  <div class="card-footer text-muted">
+  <b> Tokyo: </b> <%= task.created_at %>
+  <b>Arrive: </b> <%= task.arrive %>
+  <b>leave:</b> <%= task.leave %>
+  </div>
+</div>
+<%end%>
+ <% end %>

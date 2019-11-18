@@ -1,7 +1,6 @@
-<% if current_user.adminb? %>
-<div class="text-center rounded " style="width: 35rem; background-color:#F0F8FF;">
+<div class="text-center rounded " >
 <h4 >Users list</h4>
-<table class="position-relative " style="width: 35rem;" >
+<table class="m-10"style="width: 100%" >
   <thead  >
     <tr>
       <th>Name</th>
@@ -13,60 +12,18 @@
   </thead>
   <tbody >
     <% @users.each do |user| %>
-
-      <tr class="border-bottom">
+        <tr class="border-bottom">
         <td><%= user.name %></td>
         <td><%= user.email %></td>
-        <td><%= user.adminb %></td>
+        <td><%= user.admin %></td>
         <td> <%= Task.where(user_id: user.id).count %></td>
         <td><%= link_to 'Show', admin_user_path(user), class:'btn btn-success btn-sm' %></td>
         <td><%= link_to 'Edit', edit_admin_user_path(user), class:'btn btn-primary btn-sm' %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger btn-sm' %></td>
+        <td><%= link_to 'Destroy', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-danger btn-sm' %></td>
       </tr>
     <% end %>
-
-
   </tbody>
 </table>
 <br>
-<%= link_to 'New User', new_user_path, class:' btn btn-outline-info btn-sm mb-2' %>
+<%= link_to 'New User', new_admin_user_path, class:' btn btn-outline-info btn-sm mb-2' %>
 </div>
-<div class="container-fluid">
-<% @tasks.each do |task| %>
-<div class="card text-center m-3 position-absolute float-top" style="width: 35rem; left:38rem; bottom:180px; ">
-  <h4 >Task</h4>
-  <div class="card-header row m-1">
-  <div class="col col-lg-5 text-monospace ">
-  Status:<%= task.status %>
-  </div>
-  <div class="col-md-auto h4">
-   <%= task.user.name %>
-   </div>
-   <div class="col col-lg-4 font-italic " style="left:350px;">
-  <td> priority:  <%= task.priority %>
-</div>
-  </div>
-  <div class="card-body">
-    <div class="col-md-auto h6">
-    <p class="text-left"> Task Name:<%= task.name %> </p>
-     </div>
-    <h5 class="card-title">Detail</h5>
-    <p class="card-text"><%= task.details %></p>
-    <% task.labels.each do |label| %>
-    <div class="col-md-auto h6 " style="left:200px; bottom:110px;">
-    <p class="text-left fas fa-tags"><%= label.tittle %> </p>
-     </div>
-     <%end%>
-    <%= link_to 'Show', task,class:'btn btn-outline-success btn-sm'%>
-      <%= link_to 'Update', edit_task_path(task),class:'btn btn-outline-primary btn-sm' %>
-       <%= link_to 'Delete', task,class:'btn btn-outline-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %>
-  </div>
-  <div class="card-footer text-muted">
-  <b> Tokyo: </b> <%= task.created_at %>
-  <b>Arrive: </b> <%= task.arrive %>
-  <b>leave:</b> <%= task.leave %>
-  </div>
-</div>
-<% end %>
-</div>
-<% end %>

@@ -1,4 +1,3 @@
-
 <div class="">
 <div class="nav-item dropdown" style="width: 10rem; left:65rem;">
 <a class="nav-link fas fa-search" data-toggle="dropdown" href="#">Search</a>
@@ -20,16 +19,16 @@
 </div>
 <div class="container-fluid">
 <% @tasks.each do |task| %>
-  <% if current_user.id == task.user.id %>
+<% if current_user.id == task.user.id %>
 <div class="card text-center m-3 position-relative" style="width: 35rem; left:20rem;">
   <div class="card-header row m-1">
   <div class="col col-lg-5 text-monospace ">
   Status:<%= task.status %>
   </div>
-  <div class="col  h4" style="left:-90px;">
+  <div class="col  h4" style="left:20px;">
    <%= task.user.name %>
    </div>
-   <div class="col col-lg-4 font-italic" style="left:350px;">
+   <div class="col col-lg-4 font-italic" style="left:0px;">
   <td> priority:  <%= task.priority %>
 </div>
   </div>
@@ -54,7 +53,7 @@
   <b>leave:</b> <%= task.leave %>
   </div>
 </div>
+<% end %>
+
   <%= paginate @tasks %>
-    <% end %>
  <% end %>
-   

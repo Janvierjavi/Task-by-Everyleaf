@@ -1,23 +1,18 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-#for admin page
-  before_action :ensure_admin_user!
-def ensure_admin_user!
-unless current_user and current_user.adminb?
- redirect_to root_path, notice:"you don't belong there <<you are not admin>>"
-end
-end
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
-    @tasks = Task.all
+    @users = User.all.order('id ASC')
+
 
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    # @tasks = Task.order(:created_at).include(:user)
+    @tasks = Task.all
   end
 
   # GET /users/new
@@ -33,16 +28,15 @@ end
   # POST /users.json
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        session[:user_id]= @user.id
-        format.html { redirect_to admin_users_path(@user.id), notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: admin_users_path(@user.id) }
+    if @user.save
+      if current_user.admin?
+        redirect_to admin_user_path, notice:'user created successfully'
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+        session[:user_id] = @user.id
+          redirect_to tasks_path
+        end
+    else
+      render.new
     end
   end
 
@@ -64,19 +58,16 @@ end
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
-       if @user.id == current_user.id
-         redirect_to admin_users_path, notice: "You can not delete signed in user"
-         @adminu = User.adminu
-       elsif @adminu == 1
-         redirect_to admin_users_path, notice: "At least one admin must remain!"
-       else
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to admin_users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
+        @admins = User.admin
+      if @admins == 2
+        redirect_to admin_users_path, notice: "Atleast one user or admin should remain"
+  #prevent not to delete logged in user
+      elsif @user.id == current_user.id
+          redirect_to admin_users_path, notice: "Logged in user cannot be deleted!"
+      else
+  @user.destroy
+  redirect_to admin_users_path, notice: 'User deleted.'
+      end
   end
 
   private
@@ -87,6 +78,10 @@ end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation, :adminb)
+      if current_user.admin?
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
+    else
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
     end
 end
