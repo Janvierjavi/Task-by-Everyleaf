@@ -37,4 +37,32 @@ end
 
   end
 
-end
+  scenario "test user admin create new user" do
+    visit admin_users_path
+    click_link 'New User'
+    User.create( name: 'janvier',
+                             email: 'janvier@momo.com',
+                             password: 'password',
+                             password_confirmation: 'password')
+
+          visit users_path
+        end
+        scenario "test user admin  details" do
+          visit new_session_path
+          fill_in 'email', with: 'janvier@gmail.com'
+          fill_in 'password', with: 'password'
+          click_button 'Log in'
+            visit admin_users_path
+          click_link 'Show'
+              visit admin_users_path
+              end
+
+
+              scenario "test user admin update" do
+              visit admin_users_path
+                    end
+
+              scenario "test user admin delete" do
+                visit admin_users_path
+                    end
+  end
