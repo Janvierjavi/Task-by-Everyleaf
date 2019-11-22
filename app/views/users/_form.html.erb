@@ -36,7 +36,13 @@
     <%= form.password_field :password_confirmation, class:"form-control mb-3" %>
   </div>
 
-    
+  <div class="field">
+  <%= form.label :admin %>
+    <%= form.radio_button :admin ,'true' %>
+      <%= form.label :user %>
+      <%= form.radio_button :admin ,'false' %>
+  </div>
+  
   <div class="actions">
     <%= form.submit "create user" , class:"form-control btn-primary" %>
   </div>
