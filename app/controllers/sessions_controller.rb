@@ -1,7 +1,11 @@
 class SessionsController < ApplicationController
   def new
+  
   end
   def create
+    if logged_in?
+      redirect_to tasks_path
+      else
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
       session[:user_id] = user.id
@@ -13,9 +17,10 @@ class SessionsController < ApplicationController
       flash[:notice] = 'welcome on ur user page'
           end
     else
-      flash[:notice] = 'Failed to login'
       render 'new'
-    end
+      flash[:notice] = 'Failed to login'
+    end  
+  end
   end
 
   def destroy

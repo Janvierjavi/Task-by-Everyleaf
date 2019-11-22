@@ -3,15 +3,16 @@ class Admin::UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    if current_user.admin?
     @users = User.all.order('id ASC')
-
-
+    else
+      redirect_to tasks_path, notice:'u dont have access to this page u are not admin'
+    end
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
-    # @tasks = Task.order(:created_at).include(:user)
     @tasks = Task.all
   end
 
@@ -59,7 +60,7 @@ class Admin::UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
         @admins = User.admin
-      if @admins == 0
+      if @admins == 1
         redirect_to admin_users_path, notice: "Atleast one user or admin should remain"
   #prevent not to delete logged in user
       elsif @user.id == current_user.id
