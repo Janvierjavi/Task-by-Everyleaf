@@ -25,13 +25,16 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-      if @user.save
-          session[:user_id] = @user.id
-            redirect_to tasks_path
+    if @user.save
+      if current_user.admin?
+        redirect_to admin_users_path, notice:'user created successfully'
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+        session[:user_id] = @user.id
+          redirect_to tasks_path
+        end
+    else
+      render.new
+    end
     end
 
 
