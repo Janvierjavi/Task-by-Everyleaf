@@ -1,7 +1,4 @@
-
-
-
-<div class="card" style="width:400px; left:30rem;">
+<div class="card" style="width:600px; left:20rem;">
   <div class="card-body">
     <h4 class="card-title">Task</h4>
     <p>
@@ -28,6 +25,37 @@
     <%= link_to 'Update', edit_task_path(@task), class:'btn btn-primary' %>
     <%= link_to 'View Tasks', tasks_path, class:'btn btn-primary' %>
 
+
+
+
+<div class="text-center rounded m-2 bg-color:warning " style="width: 400px;  right:100px;"">
+
+<strong>Labels list</strong>
+<% @task.labels.each do |label| %>
+  <% if current_user.id == label.user.id %>
+<table class="position-relative " style="width: 400px;>
+  <thead>
+    <tr>
+      <th>Tittle</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+   
+      <tr class="border-bottom">
+        <td><%= label.tittle %></td>
+        <td><%= link_to 'Show', label, class:'btn btn-success btn-sm' %></td>
+        <td><%= link_to 'Edit', edit_label_path(label) %></td>
+        <td><%= link_to 'Destroy', label, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+</div>
 </div>
 
 </div>
+

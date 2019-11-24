@@ -10,10 +10,10 @@ class User < ApplicationRecord
     @users = User.all
     @admins = 0
     @users.each do |user|
-      if user.admin?
-        @admins += 1
-      end
+      if @user.admin?
+        @admins +=1
     end
+  end
     return @admins
   end
 end

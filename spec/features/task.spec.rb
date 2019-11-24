@@ -18,7 +18,7 @@ RSpec.feature "Task management function", type: :feature do
       priority:'High',
       arrive: '2019-11-18 23:10:00 +0900',
       leave: '2019-11-19 23:10:00 +0900',
-      user_id: @user.id)
+      user_id: @user.id,)
   end
 
   scenario "Test task list" do
@@ -71,5 +71,23 @@ RSpec.feature "Task management function", type: :feature do
     click_link 'High priority'
     assert Task.all.order('priority desc')
   end
+  scenario "Test create label" do
+    visit tasks_path
+    click_link 'Add label'
+    visit new_label_path
+    fill_in 'Tittle', with: 'In'
+    click_on 'create label'
+    visit labels_path
+  end
+
+
+  scenario "Test search for labels" do
+    visit tasks_path
+    fill_in 'search_label', with: 'in'
+    click_button 'Search'
+    visit tasks_path
+  end
+
+
 
 end

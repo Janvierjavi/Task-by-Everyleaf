@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :pamermition
+  # before_action :login_first!
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
 
@@ -10,9 +11,10 @@ class TasksController < ApplicationController
        @tasks = Task.all.order("leave DESC").page(params[:page])
      elsif params[:priority]
        @tasks = Task.all.order("priority DESC").page(params[:page])
-       elsif  params[:key]
-            @tasks = Task.joins(:labels)
-              .where("labels.title LIKE ?", "%#{params[:key]}%").page(params[:page])
+
+      elsif params[:search_label]
+        @tasks = Task.joins(:labels)
+            .where("labels.tittle ILIKE ?", "%#{params[:search_label]}%").page (params[:page])
             else
               @tasks = Task.all.order("created_at desc").page(params[:page])
        end
@@ -67,7 +69,7 @@ class TasksController < ApplicationController
       @task = Task.find(params[:id])
     end
     def task_params
-      params.require(:task).permit(:name, :details, :arrive, :leave, :status,  :priority, label_ids:[])
+      params.require(:task).permit(:name, :details, :arrive, :leave, :status,  :priority,:search_label, label_ids:[])
     end
 
 

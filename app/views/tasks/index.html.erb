@@ -1,3 +1,4 @@
+
 <div class="">
 <div class="nav-item dropdown" style="width: 10rem; left:65rem;">
 <a class="nav-link fas fa-search" data-toggle="dropdown" href="#">Search</a>
@@ -8,14 +9,14 @@
       <%= f.text_field :status_cont, class:'form-group rounded mx-2', placeholder:'status'%>
       <%= f.submit "search",class:'btn-dark col-sm mr-1 rounded '%>
       <div class=" m-2">
-      <%= form_tag(tasks_path, method: :get) do %>
-<p class="text-center">search for label </p>
-  <%= text_field_tag :key, params[:key], class:'form-group rounded mx-2' %>
-  <%= submit_tag 'Search label',  class:"btn-dark col-sm mr-1 rounded"%>
-<% end %>
 </div>
            <%end%>
-</div>
+
+<%= form_tag(tasks_path, method: :get) do %>
+  <%= text_field_tag :search_label, params[:search_label], class:'form-group rounded mx-2',placeholder:'  search label'%>
+  <%= submit_tag '  Search', name: nil , class:'btn-dark col-sm mr-1 rounded '%>
+ <% end %>
+ </div>
 </div>
 <div class="container-fluid">
 <% @tasks.each do |task| %>

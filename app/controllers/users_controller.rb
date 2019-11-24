@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      if current_user.admin?
+      if current_user.present?
         redirect_to admin_users_path, notice:'user created successfully'
       else
         session[:user_id] = @user.id
@@ -55,10 +55,12 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
-    respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
-      format.json { head :no_content }
+    @admins = User.admin
+    if @admins == 1
+      redirect_to admin_users_path, notice: "Atleast one user or admin should remain"
+    else
+@user.destroy
+redirect_to admin_users_path, notice: 'User deleted.'
     end
   end
 
@@ -70,8 +72,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      # params.require(:user).permit(:name, :email, :password, :password_confirmation)
-      
+        
         params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
     
       # params.require(:user).permit(:name, :email, :password, :password_confirmation)
